@@ -18,11 +18,7 @@ export const Default: Story = {
     description: "Projenizi haftalar icinde gelistirip kuresel pazara tasiriz.",
     primaryCta: { label: "Kesfet", href: "#" },
     secondaryCta: { label: "Iletisime Gec", href: "#" },
-    avatars: [
-      { alt: "Ahmet" },
-      { alt: "Burak" },
-      { alt: "Ceren" },
-    ],
+    avatars: [{ alt: "Ahmet" }, { alt: "Burak" }, { alt: "Ceren" }],
     trustText: "100'den fazla kurumsal ve bagimsiz girisimin tercihi",
   },
 };
