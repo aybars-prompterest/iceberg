@@ -48,12 +48,16 @@ export function TestimonialsCarousel({
               <div className="flex items-center gap-3 mb-4">
                 <Avatar src={t.avatarUrl} alt={t.name} size="md" />
                 <div>
-                  <p className="text-text-primary font-medium text-sm">{t.name}</p>
+                  <p className="text-text-primary font-medium text-sm">
+                    {t.name}
+                  </p>
                   <p className="text-text-secondary text-xs">{t.title}</p>
                 </div>
               </div>
               <StarRating rating={t.rating} />
-              <p className="text-text-secondary text-sm leading-relaxed mt-4">{t.quote}</p>
+              <p className="text-text-secondary text-sm leading-relaxed mt-4">
+                {t.quote}
+              </p>
             </Card>
           ))}
         </motion.div>

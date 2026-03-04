@@ -23,7 +23,8 @@ export const Default: Story = {
       {
         icon: <span className="text-accent">🔒</span>,
         title: "Built with Security in Mind",
-        description: "Security-first architecture at every layer from backend to user data.",
+        description:
+          "Security-first architecture at every layer from backend to user data.",
       },
       {
         icon: <span className="text-accent">🎨</span>,

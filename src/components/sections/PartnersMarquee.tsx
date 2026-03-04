@@ -32,7 +32,11 @@ export function PartnersMarquee({
               className="flex-shrink-0 flex items-center justify-center h-12 px-6 opacity-50 hover:opacity-100 transition-opacity"
             >
               {p.logoUrl ? (
-                <img src={p.logoUrl} alt={p.name} className="h-8 w-auto object-contain" />
+                <img
+                  src={p.logoUrl}
+                  alt={p.name}
+                  className="h-8 w-auto object-contain"
+                />
               ) : (
                 <span className="text-text-secondary font-semibold text-lg whitespace-nowrap">
                   {p.name}

@@ -30,8 +30,12 @@ export function FeaturesGrid({
               <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
                 {f.icon}
               </div>
-              <h6 className="text-base font-semibold text-text-primary mb-2">{f.title}</h6>
-              <p className="text-text-secondary text-sm leading-relaxed">{f.description}</p>
+              <h6 className="text-base font-semibold text-text-primary mb-2">
+                {f.title}
+              </h6>
+              <p className="text-text-secondary text-sm leading-relaxed">
+                {f.description}
+              </p>
             </Card>
           </StaggerItem>
         ))}
