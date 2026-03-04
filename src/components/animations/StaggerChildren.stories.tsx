@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import { StaggerChildren, StaggerItem } from "./StaggerChildren";
 import { Card } from "../ui/Card";
 

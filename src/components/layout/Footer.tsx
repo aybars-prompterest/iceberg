@@ -1,8 +1,11 @@
+"use client";
+
 import { SectionWrapper } from "./SectionWrapper";
 import { NavLink } from "../ui/NavLink";
 import { Input } from "../ui/Input";
 import { IconButton } from "../ui/IconButton";
 import { NAV_ITEMS } from "@/lib/constants";
+import Link from "next/link";
 
 export function Footer() {
   return (
@@ -11,12 +14,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div className="space-y-4">
-            <a
+            <Link
               href="/"
               className="text-xl font-bold text-text-primary tracking-tight"
             >
               Iceberg
-            </a>
+            </Link>
             <p className="text-text-secondary text-sm leading-relaxed">
               Yeni Nesil Teknoloji &amp; İçerik Stüdyosu
             </p>
