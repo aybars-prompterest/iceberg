@@ -14,7 +14,9 @@ type Story = StoryObj<typeof ScrollReveal>;
 export const Default: Story = {
   render: () => (
     <div className="space-y-8 py-20">
-      <p className="text-text-secondary text-center">Scroll down to see reveal animations</p>
+      <p className="text-text-secondary text-center">
+        Scroll down to see reveal animations
+      </p>
       {(["up", "down", "left", "right"] as const).map((dir) => (
         <ScrollReveal key={dir} direction={dir}>
           <Card>

@@ -10,7 +10,11 @@ interface ParallaxLayerProps {
   className?: string;
 }
 
-export function ParallaxLayer({ children, speed = 0.5, className }: ParallaxLayerProps) {
+export function ParallaxLayer({
+  children,
+  speed = 0.5,
+  className,
+}: ParallaxLayerProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,

@@ -26,7 +26,12 @@ export function BlogPreview({
   return (
     <SectionWrapper>
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-        <SectionHeading label={label} title={title} description={description} align="left" />
+        <SectionHeading
+          label={label}
+          title={title}
+          description={description}
+          align="left"
+        />
         <a href={viewAllHref}>
           <Button variant="secondary" size="sm">
             Bultene Goz Atin →
@@ -51,10 +56,16 @@ export function BlogPreview({
                 <Badge variant="accent" className="mb-3">
                   {post.category}
                 </Badge>
-                <h5 className="text-lg font-semibold text-text-primary mb-3">{post.title}</h5>
+                <h5 className="text-lg font-semibold text-text-primary mb-3">
+                  {post.title}
+                </h5>
                 <div className="flex items-center justify-between">
-                  <span className="text-text-secondary text-xs">{post.date}</span>
-                  <span className="text-accent text-sm font-medium">Read more →</span>
+                  <span className="text-text-secondary text-xs">
+                    {post.date}
+                  </span>
+                  <span className="text-accent text-sm font-medium">
+                    Read more →
+                  </span>
                 </div>
               </Card>
             </a>

@@ -19,7 +19,10 @@ export function Navbar() {
       >
         <div className="mx-auto max-w-[1200px] px-4 md:px-6 h-16 flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="text-xl font-bold text-text-primary tracking-tight">
+          <a
+            href="/"
+            className="text-xl font-bold text-text-primary tracking-tight"
+          >
             Iceberg
           </a>
 

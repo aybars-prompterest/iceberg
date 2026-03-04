@@ -21,7 +21,8 @@ export const Default: Story = {
         href: "#",
       },
       {
-        title: "Iceberg Girisimlerinden Mobil Sanayi, Take Off Istanbul'da Sahne Aldi",
+        title:
+          "Iceberg Girisimlerinden Mobil Sanayi, Take Off Istanbul'da Sahne Aldi",
         category: "Announcement",
         date: "19 Aralik 2025",
         href: "#",

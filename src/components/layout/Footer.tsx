@@ -11,7 +11,10 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div className="space-y-4">
-            <a href="/" className="text-xl font-bold text-text-primary tracking-tight">
+            <a
+              href="/"
+              className="text-xl font-bold text-text-primary tracking-tight"
+            >
               Iceberg
             </a>
             <p className="text-text-secondary text-sm leading-relaxed">
@@ -38,7 +41,9 @@ export function Footer() {
 
           {/* Newsletter */}
           <div className="space-y-4">
-            <p className="text-sm font-semibold text-text-primary">Iletisime Gecelim!</p>
+            <p className="text-sm font-semibold text-text-primary">
+              Iletisime Gecelim!
+            </p>
             <p className="text-text-secondary text-sm">
               Hizli bir ucretsiz tanisma toplantisi talep edin
             </p>
