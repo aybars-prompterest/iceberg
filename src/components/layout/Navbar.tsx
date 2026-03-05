@@ -4,10 +4,16 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { NavLink } from "../ui/NavLink";
 import { MobileMenu } from "./MobileMenu";
+import { HamburgerButton } from "./HamburgerButton";
 import { NAV_ITEMS } from "@/lib/constants";
+import type { NavItem } from "@/lib/types";
 import Link from "next/link";
 
-export function Navbar() {
+interface NavbarProps {
+  navItems?: NavItem[];
+}
+
+export function Navbar({ navItems = NAV_ITEMS }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -29,23 +35,14 @@ export function Navbar() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
-            {NAV_ITEMS.map((item) => (
+            {navItems.map((item) => (
               <NavLink key={item.href} href={item.href}>
                 {item.label}
               </NavLink>
             ))}
           </nav>
 
-          {/* Mobile Hamburger */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer"
-            aria-label="Toggle menu"
-          >
-            <span className="w-5 h-0.5 bg-text-primary transition-transform" />
-            <span className="w-5 h-0.5 bg-text-primary transition-opacity" />
-            <span className="w-5 h-0.5 bg-text-primary transition-transform" />
-          </button>
+          <HamburgerButton onClick={() => setMobileOpen(!mobileOpen)} />
         </div>
       </motion.header>
 

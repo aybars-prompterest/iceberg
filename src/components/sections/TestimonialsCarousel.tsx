@@ -4,16 +4,11 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import { SectionWrapper } from "../layout/SectionWrapper";
 import { SectionHeading } from "../ui/SectionHeading";
-import { Card } from "../ui/Card";
-import { Avatar } from "../ui/Avatar";
-import { StarRating } from "../ui/StarRating";
 import { ScrollReveal } from "../animations/ScrollReveal";
-import type { Testimonial } from "@/lib/types";
+import { TestimonialCard } from "./TestimonialCard";
+import type { BaseSectionProps, Testimonial } from "@/lib/types";
 
-interface TestimonialsCarouselProps {
-  label?: string;
-  title?: string;
-  description?: string;
+interface TestimonialsCarouselProps extends BaseSectionProps {
   testimonials: Testimonial[];
 }
 
@@ -40,25 +35,7 @@ export function TestimonialsCarousel({
           whileTap={{ cursor: "grabbing" }}
         >
           {testimonials.map((t, i) => (
-            <Card
-              key={i}
-              hover={false}
-              className="min-w-[300px] md:min-w-[350px] flex-shrink-0"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <Avatar src={t.avatarUrl} alt={t.name} size="md" />
-                <div>
-                  <p className="text-text-primary font-medium text-sm">
-                    {t.name}
-                  </p>
-                  <p className="text-text-secondary text-xs">{t.title}</p>
-                </div>
-              </div>
-              <StarRating rating={t.rating} />
-              <p className="text-text-secondary text-sm leading-relaxed mt-4">
-                {t.quote}
-              </p>
-            </Card>
+            <TestimonialCard key={i} {...t} />
           ))}
         </motion.div>
       </div>

@@ -2,14 +2,11 @@
 
 import { SectionWrapper } from "../layout/SectionWrapper";
 import { SectionHeading } from "../ui/SectionHeading";
-import { Card } from "../ui/Card";
 import { StaggerChildren, StaggerItem } from "../animations/StaggerChildren";
-import type { Feature } from "@/lib/types";
+import { FeatureCard } from "./FeatureCard";
+import type { BaseSectionProps, Feature } from "@/lib/types";
 
-interface FeaturesGridProps {
-  label?: string;
-  title?: string;
-  description?: string;
+interface FeaturesGridProps extends BaseSectionProps {
   features: Feature[];
 }
 
@@ -26,17 +23,7 @@ export function FeaturesGrid({
       <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
         {features.map((f, i) => (
           <StaggerItem key={i}>
-            <Card className="h-full">
-              <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                {f.icon}
-              </div>
-              <h6 className="text-base font-semibold text-text-primary mb-2">
-                {f.title}
-              </h6>
-              <p className="text-text-secondary text-sm leading-relaxed">
-                {f.description}
-              </p>
-            </Card>
+            <FeatureCard {...f} />
           </StaggerItem>
         ))}
       </StaggerChildren>
