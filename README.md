@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Iceberg
 
-## Getting Started
+Iceberg, teknoloji, yazılım ve YouTube içeriği üzerine kurulu bir şirketin kurumsal web sitesidir. Bu repo, sitenin kaynak kodunu içerir.
 
-First, run the development server:
+---
+
+## Bilgisayarına Kurmak İçin Gerekenler
+
+Başlamadan önce şunların yüklü olduğundan emin ol:
+
+- [Node.js](https://nodejs.org/) — JavaScript'i çalıştıran motor (v18 veya üstü)
+- [Git](https://git-scm.com/) — Kodu bilgisayarına indirmek için
+- Bir kod editörü — [VS Code](https://code.visualstudio.com/) önerilir
+
+---
+
+## Kurulum (Adım Adım)
+
+### 1. Kodu bilgisayarına indir
+
+```bash
+git clone https://github.com/aybars-prompterest/iceberg.git
+cd iceberg
+```
+
+### 2. Bağımlılıkları yükle
+
+```bash
+npm install
+```
+
+> Bu komut, projenin ihtiyaç duyduğu tüm kütüphaneleri indirir. Bir kez çalıştırman yeterli.
+
+### 3. Geliştirme sunucusunu başlat
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> Tarayıcında `http://localhost:3000` adresine git. Siteyi canlı olarak görebilirsin.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Komutlar
 
-## Learn More
+| Komut | Ne Yapar |
+|-------|----------|
+| `npm run dev` | Geliştirme modunda siteyi başlatır |
+| `npm run build` | Siteyi yayına almaya hazırlar |
+| `npm run storybook` | Component galerini açar — `http://localhost:6006` |
+| `npm run lint` | Kod kalitesi kontrolü yapar |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Klasör Yapısı
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+iceberg/
+├── src/
+│   ├── app/              → Sayfalar ve genel layout (Next.js App Router)
+│   ├── components/
+│   │   ├── ui/           → Küçük, tekrar kullanılabilir parçalar (Button, Card, Input...)
+│   │   ├── sections/     → Sayfa bölümleri (HeroSection, FeaturesGrid...)
+│   │   ├── layout/       → Navbar, Footer gibi sayfa çerçevesi
+│   │   └── animations/   → Framer Motion animasyon bileşenleri
+│   └── lib/
+│       ├── types.ts      → TypeScript tip tanımları
+│       └── constants.ts  → Sabit veriler (nav linkleri vb.)
+├── stories/              → Storybook story dosyaları (component önizlemeleri)
+└── docs/                 → Tasarım kararları ve plan belgeleri
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Storybook Nedir, Neden Var?
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Storybook, componentleri sitenin geri kalanından bağımsız olarak görüp test edebileceğin bir araçtır. Sanki bir component kataloğu gibi düşün.
+
+```bash
+npm run storybook
+```
+
+Tarayıcında `http://localhost:6006` açılır. Sol panelden herhangi bir componente tıklayarak nasıl göründüğünü inceleyebilirsin.
+
+
+## Kullanılan Teknolojiler
+
+| Teknoloji | Ne İşe Yarıyor |
+|-----------|----------------|
+| [Next.js 15](https://nextjs.org/) | React tabanlı web framework |
+| [React 19](https://react.dev/) | Arayüz bileşenleri için temel kütüphane |
+| [Tailwind CSS v4](https://tailwindcss.com/) | CSS'i class'larla yazmak için |
+| [Framer Motion](https://www.framer.com/motion/) | Animasyonlar için |
+| [Storybook 8](https://storybook.js.org/) | Component geliştirme ve önizleme ortamı |
+| [TypeScript](https://www.typescriptlang.org/) | JavaScript'e tip güvenliği ekler |
