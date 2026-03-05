@@ -9,7 +9,7 @@
     "lint": "eslint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "bot:generate": "npx tsx scripts/blog-bot/index.ts"
+    "bot:generate": "npx tsx --env-file=.env.local scripts/blog-bot/index.ts"
   },
   "dependencies": {
     "@huggingface/inference": "^4.13.14",

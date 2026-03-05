@@ -54,7 +54,7 @@ export class HuggingFaceWriter implements IAIWriter {
   async write(topic: Topic): Promise<BlogContent> {
     const context = topic.selftext.length > 20 ? topic.selftext.slice(0, 500) : 'No additional context'
 
-    const prompt = `[INST] You are a professional technical blog writer. Write a detailed, engaging blog post based on this trending topic from Reddit.
+    const userMessage = `You are a professional technical blog writer. Write a detailed, engaging blog post based on this trending topic from Reddit.
 
 Topic: ${topic.title}
 Context from Reddit discussion: ${context}
@@ -69,7 +69,7 @@ Requirements:
 - After the blog post, on a new line, write: TAGS: followed by a JSON array of 3-5 relevant tags, e.g.: TAGS: ["AI", "Machine Learning", "Python"]
 - After tags, write: CATEGORY: followed by one category word, e.g.: CATEGORY: AI
 
-Do not include any meta-commentary. Just write the blog post directly. [/INST]`
+Do not include any meta-commentary. Just write the blog post directly.`
 
     let rawResponse = ''
     let attempts = 0
@@ -78,17 +78,14 @@ Do not include any meta-commentary. Just write the blog post directly. [/INST]`
     while (attempts < maxAttempts) {
       try {
         rawResponse = ''
-        const stream = this.hf.textGenerationStream({
+        const stream = this.hf.chatCompletionStream({
           model: this.config.model,
-          inputs: prompt,
-          parameters: {
-            max_new_tokens: 1200,
-            temperature: 0.7,
-            do_sample: true,
-          },
+          messages: [{ role: 'user', content: userMessage }],
+          max_tokens: 1200,
+          temperature: 0.7,
         })
         for await (const chunk of stream) {
-          rawResponse += chunk.token.text
+          rawResponse += chunk.choices[0]?.delta?.content ?? ''
         }
         break // success
       } catch (err) {
