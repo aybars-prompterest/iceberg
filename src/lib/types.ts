@@ -41,6 +41,11 @@ export interface BlogPost {
   date: string;
   href: string;
   imageUrl?: string;
+  // Extended fields for blog automation
+  excerpt?: string;
+  tags?: string[];
+  sourceUrl?: string;
+  upvotes?: number;
 }
 
 export interface TeamMember {
