@@ -45,3 +45,6 @@ storybook-static
 
 # git worktrees
 .worktrees/
+
+# SQLite database (runtime)
+blog.db
