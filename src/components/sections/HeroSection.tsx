@@ -27,7 +27,7 @@ export function HeroSection({
   return (
     <SectionWrapper className="pt-32 md:pt-40 pb-16 relative overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-accent/5 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-b from-accent/5 via-transparent to-transparent pointer-events-none" />
 
       <div className="relative text-center max-w-4xl mx-auto">
         {/* Tagline */}
