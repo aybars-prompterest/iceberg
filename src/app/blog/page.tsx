@@ -25,7 +25,7 @@ export default async function BlogPage() {
         ) : (
           <div className="grid gap-8 md:grid-cols-2">
             {posts.map(post => {
-              const tags: string[] = JSON.parse(post.tags)
+              const tags: string[] = (() => { try { return JSON.parse(post.tags) } catch { return ['Technology'] } })()
               const date = new Date(post.createdAt * 1000).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',

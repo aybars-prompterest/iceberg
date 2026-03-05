@@ -22,7 +22,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   if (!post) notFound()
 
-  const tags: string[] = JSON.parse(post.tags)
+  const tags: string[] = (() => { try { return JSON.parse(post.tags) } catch { return ['Technology'] } })()
   const date = new Date(post.createdAt * 1000).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -67,7 +67,7 @@ export default async function BlogPostPage({ params }: Props) {
             >
               {post.sourceTitle}
             </a>{' '}
-            on r/{post.sourceTitle.split('/')[0]}
+            on r/{post.subreddit}
           </p>
         </div>
       </div>

@@ -10,6 +10,7 @@ export const blogPosts = sqliteTable('blog_posts', {
   tags: text('tags').notNull(),
   sourceUrl: text('source_url').notNull(),
   sourceTitle: text('source_title').notNull(),
+  subreddit: text('subreddit').notNull().default('technology'),
   upvotes: integer('upvotes').notNull(),
   createdAt: integer('created_at').notNull(),
 })

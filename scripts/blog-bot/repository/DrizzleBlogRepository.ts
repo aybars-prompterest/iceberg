@@ -16,6 +16,7 @@ export class DrizzleBlogRepository implements IBlogRepository {
       tags: JSON.stringify(content.tags),
       sourceUrl: topic.url,
       sourceTitle: topic.title,
+      subreddit: topic.subreddit,
       upvotes: topic.upvotes,
       createdAt: Math.floor(Date.now() / 1000),
     })

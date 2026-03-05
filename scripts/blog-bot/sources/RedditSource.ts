@@ -36,22 +36,28 @@ export class RedditSource implements IContentSource {
 
   private async fetchSubreddit(subreddit: string): Promise<Topic[]> {
     const url = `https://www.reddit.com/r/${subreddit}/hot.json?limit=15`
-    const response = await fetch(url, {
-      headers: { 'User-Agent': this.config.userAgent },
-    })
+    try {
+      const response = await fetch(url, {
+        headers: { 'User-Agent': this.config.userAgent },
+      })
 
-    if (!response.ok) {
-      console.warn(`Reddit fetch failed for r/${subreddit}: ${response.status}`)
+      if (!response.ok) {
+        console.warn(`Reddit fetch failed for r/${subreddit}: ${response.status}`)
+        return []
+      }
+
+      const json = await response.json() as RedditResponse
+      const children = json?.data?.children ?? []
+      return children.map(child => ({
+        url: `https://www.reddit.com${child.data.permalink}`,
+        title: child.data.title,
+        selftext: child.data.selftext,
+        upvotes: child.data.ups,
+        subreddit: child.data.subreddit,
+      }))
+    } catch (err) {
+      console.warn(`Reddit fetch error for r/${subreddit}:`, err)
       return []
     }
-
-    const json = await response.json() as RedditResponse
-    return json.data.children.map(child => ({
-      url: `https://www.reddit.com${child.data.permalink}`,
-      title: child.data.title,
-      selftext: child.data.selftext,
-      upvotes: child.data.ups,
-      subreddit: child.data.subreddit,
-    }))
   }
 }

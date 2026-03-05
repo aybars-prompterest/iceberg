@@ -72,19 +72,31 @@ Requirements:
 Do not include any meta-commentary. Just write the blog post directly. [/INST]`
 
     let rawResponse = ''
+    let attempts = 0
+    const maxAttempts = 3
 
-    const stream = this.hf.textGenerationStream({
-      model: this.config.model,
-      inputs: prompt,
-      parameters: {
-        max_new_tokens: 1200,
-        temperature: 0.7,
-        do_sample: true,
-      },
-    })
-
-    for await (const chunk of stream) {
-      rawResponse += chunk.token.text
+    while (attempts < maxAttempts) {
+      try {
+        rawResponse = ''
+        const stream = this.hf.textGenerationStream({
+          model: this.config.model,
+          inputs: prompt,
+          parameters: {
+            max_new_tokens: 1200,
+            temperature: 0.7,
+            do_sample: true,
+          },
+        })
+        for await (const chunk of stream) {
+          rawResponse += chunk.token.text
+        }
+        break // success
+      } catch (err) {
+        attempts++
+        if (attempts >= maxAttempts) throw err
+        console.warn(`HuggingFace API attempt ${attempts} failed, retrying...`, err)
+        await new Promise(resolve => setTimeout(resolve, 2000 * attempts))
+      }
     }
 
     // Split out metadata

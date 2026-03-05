@@ -23,14 +23,18 @@ export class BlogBot {
         continue
       }
 
-      console.log(`✍️  Writing blog post for: ${topic.title.slice(0, 60)}...`)
-      const content = await this.writer.write(topic)
-
-      await this.repo.save(content, topic)
-      console.log(`✅ Published: "${content.title}"`)
-      console.log(`   Slug: ${content.slug}`)
-      console.log(`   Tags: ${content.tags.join(', ')}`)
-      return // one post per run
+      try {
+        console.log(`✍️  Writing blog post for: ${topic.title.slice(0, 60)}...`)
+        const content = await this.writer.write(topic)
+        await this.repo.save(content, topic)
+        console.log(`✅ Published: "${content.title}"`)
+        console.log(`   Slug: ${content.slug}`)
+        console.log(`   Tags: ${content.tags.join(', ')}`)
+        return // one post per run
+      } catch (err) {
+        console.warn(`   Failed to process topic "${topic.title.slice(0, 60)}":`, err)
+        // continue to next topic
+      }
     }
 
     console.log('ℹ️  No new topics found today.')
