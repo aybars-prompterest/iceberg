@@ -1,5 +1,7 @@
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { db } from "@/db/client";
+import { blogPosts } from "@/db/schema";
+import { desc } from "drizzle-orm";
+import { formatPostDate } from "@/lib/blog-utils";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { AnnouncementBanner } from "@/components/sections/AnnouncementBanner";
 import { ServicesCards } from "@/components/sections/ServicesCards";
@@ -9,11 +11,15 @@ import { FeaturesGrid } from "@/components/sections/FeaturesGrid";
 import { PartnersMarquee } from "@/components/sections/PartnersMarquee";
 import { BlogPreview } from "@/components/sections/BlogPreview";
 
-export default function Home() {
+export default async function Home() {
+  const recentPosts = await db
+    .select()
+    .from(blogPosts)
+    .orderBy(desc(blogPosts.createdAt))
+    .limit(2)
+
   return (
-    <>
-      <Navbar />
-      <main>
+    <main>
         <HeroSection
           tagline="Yeni Nesil Teknoloji Stüdyosu"
           headlines={["All in One Studio", "Design", "Code", "Scale"]}
@@ -149,24 +155,13 @@ export default function Home() {
         />
 
         <BlogPreview
-          posts={[
-            {
-              title: "Iceberg Yeni Ofisinde!",
-              category: "Announcement",
-              date: "5 Şubat 2026",
-              href: "#",
-            },
-            {
-              title:
-                "Iceberg Girişimlerinden Mobil Sanayi, Take Off İstanbul'da Sahne Aldı",
-              category: "Announcement",
-              date: "19 Aralık 2025",
-              href: "#",
-            },
-          ]}
+          posts={recentPosts.map(post => ({
+            title: post.title,
+            category: post.category,
+            date: formatPostDate(post.createdAt),
+            href: `/blog/${post.slug}`,
+          }))}
         />
-      </main>
-      <Footer />
-    </>
+    </main>
   );
 }
