@@ -28,10 +28,18 @@ export default async function Home() {
     : ['All in One Studio', 'Design', 'Code', 'Scale']
   const heroDescription = s.hero_description ?? 'We build and launch your product to the global market in weeks.'
   const heroTrustText = s.hero_trust_text ?? 'Trusted by 100+ companies and independent startups'
+  const heroPrimaryCtaLabel = s.hero_primary_cta_label ?? 'Explore'
+  const heroPrimaryCtaHref = s.hero_primary_cta_href ?? '#cards'
+  const heroSecondaryCtaLabel = s.hero_secondary_cta_label ?? 'Get in Touch'
+  const heroSecondaryCtaHref = s.hero_secondary_cta_href ?? '/contact'
   const announcementBadge = s.announcement_badge ?? 'New'
   const announcementText = s.announcement_text ?? 'Iceberg moved to a new office!'
   const announcementLinkText = s.announcement_link_text ?? 'Read More'
   const announcementHref = s.announcement_href ?? '#'
+  const ctaBannerTitle = s.cta_banner_title ?? "Let's Talk First"
+  const ctaBannerDescription = s.cta_banner_description ?? "Book your free intro call and let's explore how we can bring your idea to life."
+  const ctaBannerLabel = s.cta_banner_label ?? 'Schedule a Free Call'
+  const ctaBannerHref = s.cta_banner_href ?? '#'
 
   return (
     <main>
@@ -39,8 +47,8 @@ export default async function Home() {
           tagline={heroTagline}
           headlines={heroHeadlines}
           description={heroDescription}
-          primaryCta={{ label: "Explore", href: "#cards" }}
-          secondaryCta={{ label: "Get in Touch", href: "/contact" }}
+          primaryCta={{ label: heroPrimaryCtaLabel, href: heroPrimaryCtaHref }}
+          secondaryCta={{ label: heroSecondaryCtaLabel, href: heroSecondaryCtaHref }}
           avatars={[{ alt: "A" }, { alt: "B" }, { alt: "C" }]}
           trustText={heroTrustText}
         />
@@ -79,10 +87,10 @@ export default async function Home() {
         />
 
         <CTABanner
-          title="Let's Talk First"
-          description="Book your free intro call and let's explore how we can bring your idea to life."
-          ctaLabel="Schedule a Free Call"
-          ctaHref="#"
+          title={ctaBannerTitle}
+          description={ctaBannerDescription}
+          ctaLabel={ctaBannerLabel}
+          ctaHref={ctaBannerHref}
         />
 
         <TestimonialsCarousel
