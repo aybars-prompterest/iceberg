@@ -21,6 +21,9 @@ const DEFAULTS: Record<string, string> = {
   cta_banner_description: "Book your free intro call and let's explore how we can bring your idea to life.",
   cta_banner_label: 'Schedule a Free Call',
   cta_banner_href: '#',
+  bot_subreddits: 'technology,programming,artificial,MachineLearning,webdev',
+  bot_min_upvotes: '500',
+  bot_model: 'Qwen/Qwen2.5-7B-Instruct',
 }
 
 export default async function SettingsPage() {

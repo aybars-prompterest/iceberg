@@ -171,6 +171,33 @@ export function SettingsForm({ initialValues }: SettingsFormProps) {
 
         <Field label="Buton Bağlantısı (href)" value={values.cta_banner_href ?? ''} onChange={v => set('cta_banner_href', v)} />
       </section>
+
+      {/* Bot Settings */}
+      <section className="bg-bg-surface border border-border rounded-2xl p-6 flex flex-col gap-5">
+        <h2 className={sectionHeadingClass}>Blog Bot Ayarları</h2>
+
+        <Field
+          label="Subredditler"
+          value={values.bot_subreddits ?? ''}
+          onChange={v => set('bot_subreddits', v)}
+          hint="Virgülle ayır — örn: technology,programming,webdev"
+        />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <Field
+            label="Minimum Upvote"
+            value={values.bot_min_upvotes ?? ''}
+            onChange={v => set('bot_min_upvotes', v)}
+            hint="Bu değerin altındaki konular atlanır"
+          />
+          <Field
+            label="HuggingFace Modeli"
+            value={values.bot_model ?? ''}
+            onChange={v => set('bot_model', v)}
+            hint="Örn: Qwen/Qwen2.5-7B-Instruct"
+          />
+        </div>
+      </section>
     </div>
   )
 }
