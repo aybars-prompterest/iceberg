@@ -1,5 +1,10 @@
 import { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core'
 
+export const siteSettings = sqliteTable('site_settings', {
+  key: text('key').primaryKey(),
+  value: text('value').notNull(),
+})
+
 export const blogPosts = sqliteTable('blog_posts', {
   id: integer('id').primaryKey({ autoIncrement: true }),
   slug: text('slug').notNull().unique(),

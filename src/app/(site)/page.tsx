@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic'
 
 import { db } from "@/db/client";
-import { blogPosts } from "@/db/schema";
+import { blogPosts, siteSettings } from "@/db/schema";
 import { desc } from "drizzle-orm";
 import { formatPostDate } from "@/lib/blog-utils";
 import { HeroSection } from "@/components/sections/HeroSection";
@@ -14,29 +14,42 @@ import { PartnersMarquee } from "@/components/sections/PartnersMarquee";
 import { BlogPreview } from "@/components/sections/BlogPreview";
 
 export default async function Home() {
-  const recentPosts = await db
-    .select()
-    .from(blogPosts)
-    .orderBy(desc(blogPosts.createdAt))
-    .limit(2)
+  const [settingsRows, recentPosts] = await Promise.all([
+    db.select().from(siteSettings),
+    db.select().from(blogPosts).orderBy(desc(blogPosts.createdAt)).limit(2),
+  ])
+
+  const s: Record<string, string> = {}
+  for (const row of settingsRows) s[row.key] = row.value
+
+  const heroTagline = s.hero_tagline ?? 'Next-Gen Technology Studio'
+  const heroHeadlines = s.hero_headlines
+    ? s.hero_headlines.split(',').map(h => h.trim())
+    : ['All in One Studio', 'Design', 'Code', 'Scale']
+  const heroDescription = s.hero_description ?? 'We build and launch your product to the global market in weeks.'
+  const heroTrustText = s.hero_trust_text ?? 'Trusted by 100+ companies and independent startups'
+  const announcementBadge = s.announcement_badge ?? 'New'
+  const announcementText = s.announcement_text ?? 'Iceberg moved to a new office!'
+  const announcementLinkText = s.announcement_link_text ?? 'Read More'
+  const announcementHref = s.announcement_href ?? '#'
 
   return (
     <main>
         <HeroSection
-          tagline="Next-Gen Technology Studio"
-          headlines={["All in One Studio", "Design", "Code", "Scale"]}
-          description="We build and launch your product to the global market in weeks."
+          tagline={heroTagline}
+          headlines={heroHeadlines}
+          description={heroDescription}
           primaryCta={{ label: "Explore", href: "#cards" }}
           secondaryCta={{ label: "Get in Touch", href: "/contact" }}
           avatars={[{ alt: "A" }, { alt: "B" }, { alt: "C" }]}
-          trustText="Trusted by 100+ companies and independent startups"
+          trustText={heroTrustText}
         />
 
         <AnnouncementBanner
-          badge="New"
-          text="Iceberg moved to a new office!"
-          linkText="Read More"
-          href="#"
+          badge={announcementBadge}
+          text={announcementText}
+          linkText={announcementLinkText}
+          href={announcementHref}
         />
 
         <ServicesCards
