@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .where(eq(blogPosts.slug, slug))
     .limit(1)
 
-  if (!post) return { title: 'Yazı Bulunamadı — Iceberg' }
+  if (!post) return { title: 'Post Not Found — Iceberg' }
 
   return {
     title: `${post.title} — Iceberg Blog`,
@@ -51,7 +51,7 @@ export default async function BlogPostPage({ params }: Props) {
           href="/blog"
           className="text-text-secondary hover:text-accent text-sm mb-8 inline-flex items-center gap-1 transition-colors"
         >
-          ← Blog'a Dön
+          ← Back to Blog
         </Link>
 
         <div className="flex items-center gap-3 mb-6">
@@ -75,7 +75,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
           {isValidHttpUrl(post.sourceUrl) && (
             <p className="text-xs text-text-secondary/50">
-              Kaynak:{' '}
+              Source:{' '}
               <a
                 href={post.sourceUrl}
                 target="_blank"

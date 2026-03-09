@@ -14,8 +14,8 @@ interface TestimonialsCarouselProps extends BaseSectionProps {
 
 export function TestimonialsCarousel({
   label = "WeReviews",
-  title = "Musterilerimizden Gelen Geri Bildirimler",
-  description = "Degisimi bizimle deneyimleyen musterilerimizin hikayeleri.",
+  title = "Feedback From Our Clients",
+  description = "Stories from our clients who experienced change with us.",
   testimonials,
 }: TestimonialsCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);

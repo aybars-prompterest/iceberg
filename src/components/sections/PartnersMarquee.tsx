@@ -12,8 +12,8 @@ interface PartnersMarqueeProps {
 }
 
 export function PartnersMarquee({
-  title = "Partnerlerimiz",
-  description = "Dijital cozumler yaratma yolculugumuzda onde gelen markalar ve ortaklar tarafindan tavsiye ediliyoruz.",
+  title = "Our Partners",
+  description = "Recommended by leading brands and partners on our journey to create digital solutions.",
   partners,
 }: PartnersMarqueeProps) {
   return (

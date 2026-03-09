@@ -1,12 +1,12 @@
 import type { NavItem } from "./types";
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: "Ana Sayfa", href: "/" },
-  { label: "Hizmetler", href: "/services" },
-  { label: "Portfolyo", href: "/portfolio" },
-  { label: "Hakkimizda", href: "/about" },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
-  { label: "Iletisim", href: "/contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const ANIMATION = {

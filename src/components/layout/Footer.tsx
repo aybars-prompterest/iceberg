@@ -21,7 +21,7 @@ export function Footer() {
               Iceberg
             </Link>
             <p className="text-text-secondary text-sm leading-relaxed">
-              Yeni Nesil Teknoloji &amp; İçerik Stüdyosu
+              Next-Gen Technology &amp; Content Studio
             </p>
             <div className="flex gap-3">
               <IconButton>X</IconButton>
@@ -32,7 +32,7 @@ export function Footer() {
 
           {/* Pages */}
           <div className="space-y-4">
-            <p className="text-sm font-semibold text-text-primary">Sayfalar</p>
+            <p className="text-sm font-semibold text-text-primary">Pages</p>
             <div className="flex flex-col gap-3">
               {NAV_ITEMS.map((item) => (
                 <NavLink key={item.href} href={item.href}>
@@ -45,25 +45,25 @@ export function Footer() {
           {/* Newsletter */}
           <div className="space-y-4">
             <p className="text-sm font-semibold text-text-primary">
-              Iletisime Gecelim!
+              Let's Connect!
             </p>
             <p className="text-text-secondary text-sm">
-              Hizli bir ucretsiz tanisma toplantisi talep edin
+              Request a quick free intro meeting
             </p>
             <Input
               placeholder="info@iceberg.dev"
               onSubmit={() => {}}
-              submitLabel="Gonder"
+              submitLabel="Send"
             />
             <p className="text-text-secondary text-xs">
-              Giris yaparak gizlilik sozlesmemizi kabul etmis sayilirsiniz.
+              By submitting you agree to our privacy policy.
             </p>
           </div>
         </div>
 
         <div className="mt-12 pt-6 border-t border-border text-center">
           <p className="text-text-secondary text-xs">
-            Iceberg &copy;{new Date().getFullYear()} Tum haklari saklidir
+            Iceberg &copy;{new Date().getFullYear()} All rights reserved
           </p>
         </div>
       </SectionWrapper>

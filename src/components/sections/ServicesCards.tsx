@@ -12,8 +12,8 @@ interface ServicesCardsProps extends BaseSectionProps {
 
 export function ServicesCards({
   label = "WeDo",
-  title = "Ekibimizi, hikayemizi ve yaptigimiz isleri taniyin",
-  description = "Her projemizde nasil deger yarattigimizi ve ekibimizin rolunu kesfedin.",
+  title = "Meet our team, our story, and what we do",
+  description = "Discover how we create value in every project and the role our team plays.",
   cards,
 }: ServicesCardsProps) {
   return (

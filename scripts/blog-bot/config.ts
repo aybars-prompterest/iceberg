@@ -6,7 +6,7 @@ export const config = {
   },
   huggingface: {
     apiKey: process.env.HUGGINGFACE_API_KEY ?? '',
-    model: 'mistralai/Mistral-7B-Instruct-v0.3',
+    model: 'Qwen/Qwen2.5-7B-Instruct',
   },
 } as const
 

@@ -18,8 +18,8 @@ interface BlogPreviewProps {
 
 export function BlogPreview({
   label = "WeLog",
-  title = "Bulteni Kesfedin",
-  description = "En son secilmis blog yazilarini kesfedin.",
+  title = "Explore the Newsletter",
+  description = "Discover the latest handpicked blog posts.",
   posts,
   viewAllHref = "/blog",
 }: BlogPreviewProps) {
@@ -34,7 +34,7 @@ export function BlogPreview({
         />
         <a href={viewAllHref}>
           <Button variant="secondary" size="sm">
-            Bultene Goz Atin →
+            View All Posts →
           </Button>
         </a>
       </div>

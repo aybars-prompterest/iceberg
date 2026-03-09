@@ -11,7 +11,7 @@ export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Blog — Iceberg',
-  description: 'Yapay zeka tarafından derlenen en güncel teknoloji içgörüleri.',
+  description: 'The latest tech insights curated by AI.',
 }
 
 export default async function BlogPage() {
@@ -26,13 +26,13 @@ export default async function BlogPage() {
       <div className="mx-auto max-w-[1200px] px-4 md:px-6">
         <SectionHeading
           label="Blog"
-          title="Bülteni Keşfedin"
-          description="Yapay zeka tarafından derlenen en güncel teknoloji içgörüleri."
+          title="Explore the Newsletter"
+          description="The latest tech insights curated by AI."
           align="left"
         />
 
         {posts.length === 0 ? (
-          <p className="text-text-secondary mt-12">Henüz yazı yok. Botu çalıştırarak ilk yazıyı oluşturun.</p>
+          <p className="text-text-secondary mt-12">No posts yet. Run the bot to generate the first post.</p>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 mt-12">
             {posts.map(post => {
@@ -61,7 +61,7 @@ export default async function BlogPage() {
                         ))}
                       </div>
                       <span className="text-accent text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                        Devamını Oku →
+                        Read More →
                       </span>
                     </div>
                   </article>

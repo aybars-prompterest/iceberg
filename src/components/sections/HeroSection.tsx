@@ -16,13 +16,13 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({
-  tagline = "Yeni Nesil Teknoloji Studyosu",
+  tagline = "Next-Gen Technology Studio",
   headlines = ["All in One Studio", "Design", "Code", "Scale"],
-  description = "Projenizi haftalar icinde gelistirip kuresel pazara tasiriz.",
-  primaryCta = { label: "Kesfet", href: "#cards" },
-  secondaryCta = { label: "Iletisime Gec", href: "/contact" },
+  description = "We build and launch your product to the global market in weeks.",
+  primaryCta = { label: "Explore", href: "#cards" },
+  secondaryCta = { label: "Get in Touch", href: "/contact" },
   avatars = [],
-  trustText = "100'den fazla kurumsal ve bagimsiz girisimin tercihi",
+  trustText = "Trusted by 100+ companies and independent startups",
 }: HeroSectionProps) {
   return (
     <SectionWrapper className="pt-32 md:pt-40 pb-16 relative overflow-hidden">

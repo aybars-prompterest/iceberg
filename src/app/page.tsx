@@ -23,44 +23,44 @@ export default async function Home() {
   return (
     <main>
         <HeroSection
-          tagline="Yeni Nesil Teknoloji Stüdyosu"
+          tagline="Next-Gen Technology Studio"
           headlines={["All in One Studio", "Design", "Code", "Scale"]}
-          description="Projenizi haftalar içinde geliştirip küresel pazara taşırız."
-          primaryCta={{ label: "Keşfet", href: "#cards" }}
-          secondaryCta={{ label: "İletişime Geç", href: "/contact" }}
+          description="We build and launch your product to the global market in weeks."
+          primaryCta={{ label: "Explore", href: "#cards" }}
+          secondaryCta={{ label: "Get in Touch", href: "/contact" }}
           avatars={[{ alt: "A" }, { alt: "B" }, { alt: "C" }]}
-          trustText="100'den fazla kurumsal ve bağımsız girişimin tercihi"
+          trustText="Trusted by 100+ companies and independent startups"
         />
 
         <AnnouncementBanner
-          badge="Yeni"
-          text="Iceberg yeni ofisine taşındı!"
-          linkText="Devamını Oku"
+          badge="New"
+          text="Iceberg moved to a new office!"
+          linkText="Read More"
           href="#"
         />
 
         <ServicesCards
           cards={[
             {
-              title: "Hizmetlerimiz",
+              title: "Services",
               description:
-                "Uçtan uca ürün tasarımı, geliştirme ve ölçeklendirme hepsi tek çatı altında.",
+                "End-to-end product design, development, and scaling — all under one roof.",
               href: "/services",
-              linkText: "Hizmetlerimize Göz At",
+              linkText: "Explore Our Services",
             },
             {
-              title: "Portfolyo",
+              title: "Portfolio",
               description:
-                "Girişimlerden küresel markalara, müşterilerimizle birlikte geliştirdiğimiz dijital ürünleri keşfedin.",
+                "From startups to global brands, explore the digital products we've built with our clients.",
               href: "/portfolio",
-              linkText: "Projelerimizi İncele",
+              linkText: "View Our Projects",
             },
             {
-              title: "Hakkımızda",
+              title: "About Us",
               description:
-                "Iceberg, uzman ekibiyle fikirleri güçlü dijital ürünlere dönüştüren bir teknoloji stüdyosudur.",
+                "Iceberg is a technology studio that turns ideas into powerful digital products with an expert team.",
               href: "/about",
-              linkText: "Ekibimizle Tanış",
+              linkText: "Meet Our Team",
             },
           ]}
         />
@@ -78,28 +78,28 @@ export default async function Home() {
               name: "Ahmet Yılmaz",
               title: "CTO, TechCorp",
               quote:
-                "Iceberg ekibi ile çalıştığımızdan beri projelerimiz çok daha hızlı ilerlemeye başladı.",
+                "Since working with the Iceberg team, our projects have been moving much faster.",
               rating: 5,
             },
             {
               name: "Elif Demir",
-              title: "Proje Koordinatörü",
+              title: "Project Coordinator",
               quote:
-                "Teknik bilgiyi aşan vizyoner bir yaklaşımla çözümler üretiyor.",
+                "They deliver solutions with a visionary approach that goes beyond technical expertise.",
               rating: 5,
             },
             {
               name: "Burak Kaya",
               title: "Co-Founder, StartupX",
               quote:
-                "Hızlı karar alma ve verimli teslimat yetenekleri bizi sürekli destekliyor.",
+                "Their ability to make quick decisions and deliver efficiently keeps us moving forward.",
               rating: 5,
             },
             {
               name: "Ceren Öztürk",
               title: "Founder, DesignHub",
               quote:
-                "Startup dinamiklerini çok iyi anlıyorlar. Ürünümüz çok daha sağlam büyüyor.",
+                "They truly understand startup dynamics. Our product is growing much stronger.",
               rating: 4,
             },
           ]}
