@@ -7,12 +7,13 @@ RUN pnpm install --frozen-lockfile
 
 FROM node:20-alpine AS builder
 WORKDIR /app
+ENV NEXT_TELEMETRY_DISABLED=1
 RUN apk add --no-cache python3 make g++
 RUN corepack enable && corepack prepare pnpm@latest --activate
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN pnpm rebuild better-sqlite3
-RUN pnpm build
+RUN NODE_OPTIONS="--max-old-space-size=2048" pnpm build
 
 FROM node:20-alpine AS runner
 WORKDIR /app
