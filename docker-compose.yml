@@ -5,5 +5,13 @@ services:
     restart: unless-stopped
     ports:
       - "127.0.0.1:3000:3000"
+    env_file:
+      - .env.production
     environment:
       - NODE_ENV=production
+      - DATABASE_PATH=/data/blog.db
+    volumes:
+      - db_data:/data
+
+volumes:
+  db_data:
