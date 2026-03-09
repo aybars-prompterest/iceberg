@@ -4,13 +4,14 @@ RUN apk add --no-cache python3 make g++
 RUN corepack enable && corepack prepare pnpm@latest --activate
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
-RUN pnpm rebuild better-sqlite3
 
 FROM node:20-alpine AS builder
 WORKDIR /app
+RUN apk add --no-cache python3 make g++
 RUN corepack enable && corepack prepare pnpm@latest --activate
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+RUN pnpm rebuild better-sqlite3
 RUN pnpm build
 
 FROM node:20-alpine AS runner
