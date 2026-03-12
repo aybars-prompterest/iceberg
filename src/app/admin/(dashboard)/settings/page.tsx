@@ -103,6 +103,7 @@ const DEFAULTS: Record<string, string> = {
   bot_subreddits: "technology,programming,artificial,MachineLearning,webdev",
   bot_min_upvotes: "500",
   bot_model: "Qwen/Qwen2.5-7B-Instruct",
+  bot_interval_hours: "24",
   bot_temperature: "0.7",
   bot_max_tokens: "1200",
   bot_system_prompt: `You are a professional technical blog writer. Write a detailed, engaging blog post based on this trending topic from Reddit.

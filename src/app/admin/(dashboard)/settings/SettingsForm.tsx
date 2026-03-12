@@ -510,14 +510,24 @@ export function SettingsForm({ initialValues }: SettingsFormProps) {
                 onChange={(v) => set("bot_min_upvotes", v)}
                 hint="Bu değerin altındaki konular atlanır"
                 type="number"
+                min={0}
               />
               <Field
-                label="HuggingFace Modeli"
-                value={values.bot_model ?? ""}
-                onChange={(v) => set("bot_model", v)}
-                hint="Örn: Qwen/Qwen2.5-7B-Instruct"
+                label="Çalışma Aralığı (saat)"
+                value={values.bot_interval_hours ?? ""}
+                onChange={(v) => set("bot_interval_hours", v)}
+                hint="Her kaç saatte bir çalışsın? Örn: 24 = günde 1 kere"
+                type="number"
+                min={1}
               />
             </div>
+
+            <Field
+              label="HuggingFace Modeli"
+              value={values.bot_model ?? ""}
+              onChange={(v) => set("bot_model", v)}
+              hint="Örn: Qwen/Qwen2.5-7B-Instruct"
+            />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <Field
@@ -546,7 +556,9 @@ export function SettingsForm({ initialValues }: SettingsFormProps) {
               onChange={(v) => set("bot_system_prompt", v)}
               textarea
               rows={8}
-              hint={'Boş bırakılırsa varsayılan prompt kullanılır. Konu için {{topic}}, Reddit içeriği için {{context}} kullan. Özel prompt yazarken yazının sonuna mutlaka şunları ekle: TAGS: ["Tag1", "Tag2"] ve CATEGORY: KategoriAdı — aksi hâlde tüm yazılar "Technology" kategorisine düşer.'}
+              hint={
+                'Boş bırakılırsa varsayılan prompt kullanılır. Konu için {{topic}}, Reddit içeriği için {{context}} kullan. Özel prompt yazarken yazının sonuna mutlaka şunları ekle: TAGS: ["Tag1", "Tag2"] ve CATEGORY: KategoriAdı — aksi hâlde tüm yazılar "Technology" kategorisine düşer.'
+              }
             />
           </>
         )}
