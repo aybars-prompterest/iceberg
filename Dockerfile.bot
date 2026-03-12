@@ -9,4 +9,4 @@ COPY scripts/ ./scripts/
 COPY src/db/ ./src/db/
 COPY drizzle/ ./drizzle/
 COPY tsconfig.json ./
-CMD ["pnpm", "exec", "tsx", "scripts/blog-bot/index.ts"]
+CMD ["node_modules/.bin/tsx", "scripts/blog-bot/index.ts"]

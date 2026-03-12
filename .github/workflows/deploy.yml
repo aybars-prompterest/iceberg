@@ -63,9 +63,10 @@ jobs:
           command_timeout: 10m
           script: |
             set -e
+            cd /var/www/iceberg
+            git pull origin master
             echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             docker pull ghcr.io/${{ github.repository }}:latest
             docker pull ghcr.io/${{ github.repository }}-bot:latest
-            cd /var/www/iceberg
             docker compose up -d --no-build
             docker image prune -f
