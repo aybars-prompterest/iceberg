@@ -6,6 +6,5 @@ export { CTABanner } from "./CTABanner";
 export { TestimonialsCarousel } from "./TestimonialsCarousel";
 export { TestimonialCard } from "./TestimonialCard";
 export { FeaturesGrid } from "./FeaturesGrid";
-export { FeatureCard } from "./FeatureCard";
 export { PartnersMarquee } from "./PartnersMarquee";
 export { BlogPreview } from "./BlogPreview";
