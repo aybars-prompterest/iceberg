@@ -1,14 +1,31 @@
 export const config = {
   reddit: {
-    subreddits: ['technology', 'programming', 'artificial', 'MachineLearning', 'webdev'],
+    subreddits: [
+      "technology",
+      "programming",
+      "artificial",
+      "MachineLearning",
+      "webdev",
+    ],
     minUpvotes: 500,
-    userAgent: process.env.REDDIT_USER_AGENT ?? 'IcebergBot/1.0',
+    userAgent: process.env.REDDIT_USER_AGENT ?? "IcebergBot/1.0",
   },
   huggingface: {
-    apiKey: process.env.HUGGINGFACE_API_KEY ?? '',
-    model: 'Qwen/Qwen2.5-7B-Instruct',
+    apiKey: process.env.HUGGINGFACE_API_KEY ?? "",
+    model: "Qwen/Qwen2.5-7B-Instruct",
   },
-} as const
+} as const;
 
-export type RedditConfig = typeof config.reddit
-export type HuggingFaceConfig = typeof config.huggingface
+export type RedditConfig = {
+  subreddits: readonly string[];
+  minUpvotes: number;
+  userAgent: string;
+};
+
+export type HuggingFaceConfig = {
+  apiKey: string;
+  model: string;
+  temperature?: number;
+  maxTokens?: number;
+  systemPrompt?: string;
+};

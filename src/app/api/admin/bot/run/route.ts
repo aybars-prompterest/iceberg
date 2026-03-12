@@ -27,17 +27,30 @@ export async function POST() {
     : ["technology", "programming", "artificial", "MachineLearning", "webdev"];
   const minUpvotes = s.bot_min_upvotes ? Number(s.bot_min_upvotes) : 500;
   const model = s.bot_model || "Qwen/Qwen2.5-7B-Instruct";
+  const temperature = s.bot_temperature ? Number(s.bot_temperature) : undefined;
+  const maxTokens = s.bot_max_tokens ? Number(s.bot_max_tokens) : undefined;
+  const systemPrompt = s.bot_system_prompt || undefined;
 
   try {
-    // @ts-expect-error - config.ts uses `as const` literal types; runtime values are compatible
-    const source = new RedditSource({ subreddits, minUpvotes, userAgent: process.env.REDDIT_USER_AGENT ?? "IcebergBot/1.0" });
-    // @ts-expect-error - config.ts uses `as const` literal types; runtime values are compatible
-    const writer = new HuggingFaceWriter({ apiKey, model });
+    const source = new RedditSource({
+      subreddits,
+      minUpvotes,
+      userAgent: process.env.REDDIT_USER_AGENT ?? "IcebergBot/1.0",
+    });
+    const writer = new HuggingFaceWriter({
+      apiKey,
+      model,
+      temperature,
+      maxTokens,
+      systemPrompt,
+    });
     const bot = new BlogBot(source, writer, new DrizzleBlogRepository());
     const result = await bot.run();
 
     // Save last run timestamp
-    const now = new Date().toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" });
+    const now = new Date().toLocaleString("tr-TR", {
+      timeZone: "Europe/Istanbul",
+    });
     await db
       .insert(siteSettings)
       .values({ key: "bot_last_run", value: now })
