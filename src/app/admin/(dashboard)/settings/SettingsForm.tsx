@@ -546,7 +546,7 @@ export function SettingsForm({ initialValues }: SettingsFormProps) {
               onChange={(v) => set("bot_system_prompt", v)}
               textarea
               rows={8}
-              hint="Boş bırakılırsa varsayılan prompt kullanılır. Konu için {{topic}}, Reddit içeriği için {{context}} kullan. Özel prompt yazarken yazının sonuna mutlaka şunları ekle: TAGS: [\"Tag1\", \"Tag2\"] ve CATEGORY: KategoriAdı — aksi hâlde tüm yazılar \"Technology\" kategorisine düşer."
+              hint={'Boş bırakılırsa varsayılan prompt kullanılır. Konu için {{topic}}, Reddit içeriği için {{context}} kullan. Özel prompt yazarken yazının sonuna mutlaka şunları ekle: TAGS: ["Tag1", "Tag2"] ve CATEGORY: KategoriAdı — aksi hâlde tüm yazılar "Technology" kategorisine düşer.'}
             />
           </>
         )}

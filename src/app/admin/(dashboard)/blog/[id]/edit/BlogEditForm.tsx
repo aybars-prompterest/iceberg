@@ -153,7 +153,7 @@ export function BlogEditForm({ post }: BlogEditFormProps) {
         </div>
 
         {/* Sidebar — right */}
-        <div className="w-full xl:w-[300px] shrink-0 flex flex-col gap-4">
+        <div className="w-full xl:w-75 shrink-0 flex flex-col gap-4">
           {/* Meta info */}
           <div className="bg-bg-surface border border-border rounded-2xl p-5 flex flex-col gap-4">
             <h3 className="text-xs font-semibold text-text-secondary uppercase tracking-widest pb-3 border-b border-border">

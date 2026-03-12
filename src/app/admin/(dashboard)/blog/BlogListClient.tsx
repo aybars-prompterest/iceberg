@@ -139,7 +139,7 @@ export function BlogListClient({ posts }: { posts: Post[] }) {
           />
         </div>
         <select
-          className="bg-bg-primary border border-border rounded-xl px-4 py-2.5 text-text-primary text-sm outline-none focus:border-accent transition-colors appearance-none cursor-pointer min-w-[160px]"
+          className="bg-bg-primary border border-border rounded-xl px-4 py-2.5 text-text-primary text-sm outline-none focus:border-accent transition-colors appearance-none cursor-pointer min-w-40"
           value={categoryFilter}
           onChange={e => { setCategoryFilter(e.target.value); setPage(1) }}
         >
