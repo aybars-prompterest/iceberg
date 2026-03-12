@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { db } from '@/db/client'
 import { blogPosts } from '@/db/schema'
 import { eq } from 'drizzle-orm'
+import { formatPostDate } from '@/lib/blog-utils'
 import { BlogEditForm } from './BlogEditForm'
 
 export default async function BlogEditPage({ params }: { params: Promise<{ id: string }> }) {
@@ -15,23 +16,19 @@ export default async function BlogEditPage({ params }: { params: Promise<{ id: s
   }
 
   return (
-    <div className="p-8 flex flex-col gap-6 max-w-4xl">
-      {/* Header */}
-      <div>
-        <h1 className="text-2xl font-semibold text-text-primary font-heading">Blog Yazısını Düzenle</h1>
-        <p className="text-sm text-text-secondary mt-1">ID: {post.id}</p>
-      </div>
-
-      {/* Form */}
-      <BlogEditForm
-        post={{
-          id: post.id,
-          title: post.title,
-          content: post.content,
-          excerpt: post.excerpt,
-          category: post.category,
-        }}
-      />
-    </div>
+    <BlogEditForm
+      post={{
+        id: post.id,
+        slug: post.slug,
+        title: post.title,
+        content: post.content,
+        excerpt: post.excerpt,
+        category: post.category,
+        tags: post.tags,
+        subreddit: post.subreddit,
+        sourceUrl: post.sourceUrl,
+        createdAt: formatPostDate(post.createdAt),
+      }}
+    />
   )
 }
