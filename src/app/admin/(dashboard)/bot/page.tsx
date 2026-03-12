@@ -4,29 +4,41 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 
-type Status = 'idle' | 'running' | 'success' | 'error'
+type Status = 'idle' | 'running' | 'success' | 'no_result' | 'error'
+
+interface BotResponse {
+  success?: boolean
+  message?: string
+  reason?: string
+  error?: string
+  title?: string
+  slug?: string
+  topicsFound?: number
+  skipped?: number
+}
 
 export default function BotPage() {
   const [status, setStatus] = useState<Status>('idle')
-  const [errorMessage, setErrorMessage] = useState('')
+  const [botResponse, setBotResponse] = useState<BotResponse>({})
 
   async function handleRunBot() {
     setStatus('running')
-    setErrorMessage('')
+    setBotResponse({})
 
     try {
       const res = await fetch('/api/admin/bot/run', { method: 'POST' })
-      const data = await res.json()
+      const data: BotResponse = await res.json()
 
       if (!res.ok) {
-        setErrorMessage(data.error ?? 'Bilinmeyen hata')
+        setBotResponse(data)
         setStatus('error')
         return
       }
 
-      setStatus('success')
+      setBotResponse(data)
+      setStatus(data.success ? 'success' : 'no_result')
     } catch {
-      setErrorMessage('Sunucuya bağlanılamadı')
+      setBotResponse({ error: 'Sunucuya bağlanılamadı' })
       setStatus('error')
     }
   }
@@ -75,8 +87,13 @@ export default function BotPage() {
           {status === 'success' && (
             <div className="flex flex-col gap-3">
               <p className="text-sm text-green-400 text-center">
-                Başarılı! Yeni yazı oluşturuldu.
+                {botResponse.message ?? 'Yeni yazı oluşturuldu!'}
               </p>
+              {botResponse.topicsFound !== undefined && (
+                <p className="text-xs text-text-secondary text-center">
+                  {botResponse.topicsFound} konu bulundu, {botResponse.skipped} tanesi zaten yayınlanmıştı.
+                </p>
+              )}
               <Link
                 href="/admin/blog"
                 className="inline-flex items-center justify-center gap-1 text-sm text-accent hover:text-accent/80 transition-colors"
@@ -87,9 +104,22 @@ export default function BotPage() {
             </div>
           )}
 
+          {status === 'no_result' && (
+            <div className="flex flex-col gap-3">
+              <p className="text-sm text-yellow-400 text-center">
+                {botResponse.reason ?? 'Yeni yazı oluşturulamadı.'}
+              </p>
+              {botResponse.topicsFound !== undefined && (
+                <p className="text-xs text-text-secondary text-center">
+                  {botResponse.topicsFound} konu bulundu, {botResponse.skipped} tanesi zaten yayınlanmıştı.
+                </p>
+              )}
+            </div>
+          )}
+
           {status === 'error' && (
             <p className="text-sm text-red-400 text-center">
-              Hata: {errorMessage}
+              Hata: {botResponse.error ?? 'Bilinmeyen hata'}
             </p>
           )}
         </div>

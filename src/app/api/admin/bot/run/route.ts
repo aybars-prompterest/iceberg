@@ -34,8 +34,32 @@ export async function POST() {
     // @ts-expect-error - config.ts uses `as const` literal types; runtime values are compatible
     const writer = new HuggingFaceWriter({ apiKey, model });
     const bot = new BlogBot(source, writer, new DrizzleBlogRepository());
-    await bot.run();
-    return NextResponse.json({ success: true, message: "Bot çalıştırıldı" });
+    const result = await bot.run();
+
+    // Save last run timestamp
+    const now = new Date().toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" });
+    await db
+      .insert(siteSettings)
+      .values({ key: "bot_last_run", value: now })
+      .onConflictDoUpdate({ target: siteSettings.key, set: { value: now } });
+
+    if (result.status === "published") {
+      return NextResponse.json({
+        success: true,
+        message: `Yeni yazı oluşturuldu: "${result.title}"`,
+        title: result.title,
+        slug: result.slug,
+        topicsFound: result.topicsFound,
+        skipped: result.skipped,
+      });
+    }
+
+    const reason =
+      result.status === "no_new"
+        ? "Reddit'ten konu bulunamadı. Upvote eşiğini düşürmeyi veya subreddit'leri değiştirmeyi deneyin."
+        : `Tüm konular zaten yayınlanmış (${result.skipped}/${result.topicsFound} atlandı).`;
+
+    return NextResponse.json({ success: false, reason, ...result });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Bilinmeyen hata";
     return NextResponse.json({ error: message }, { status: 500 });
