@@ -21,12 +21,12 @@ export class BlogBot {
   async run(): Promise<BotResult> {
     console.log('🤖 BlogBot starting...')
 
-    console.log('📡 Fetching topics from Reddit...')
+    console.log('📡 Fetching topics from Google News...')
     const topics = await this.source.fetchTopics()
     console.log(`   Found ${topics.length} topics`)
 
     if (topics.length === 0) {
-      console.log('ℹ️  No topics found from Reddit.')
+      console.log('ℹ️  No topics found from Google News.')
       return { status: 'no_new', topicsFound: 0, skipped: 0 }
     }
 

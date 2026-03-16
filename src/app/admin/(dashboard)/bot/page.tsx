@@ -50,7 +50,7 @@ export default function BotPage() {
         <div className="flex flex-col gap-2">
           <h1 className="text-2xl font-semibold text-text-primary font-heading">Bot Kontrolü</h1>
           <p className="text-sm text-text-secondary leading-relaxed">
-            Blog bot&apos;u manuel olarak çalıştırın. Her çalıştırmada Reddit&apos;ten en popüler
+            Blog bot&apos;u manuel olarak çalıştırın. Her çalıştırmada Google News&apos;ten en popüler
             konuyu bulur ve bir blog yazısı oluşturur.
           </p>
         </div>

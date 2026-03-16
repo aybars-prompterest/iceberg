@@ -63,10 +63,10 @@ export class HuggingFaceWriter implements IAIWriter {
         .replace(/\{\{context\}\}/g, context);
     }
 
-    return `You are a professional technical blog writer. Write a detailed, engaging blog post based on this trending topic from Reddit.
+    return `You are a professional technical blog writer. Write a detailed, engaging blog post based on this trending topic from Google News.
 
 Topic: ${topic.title}
-Context from Reddit discussion: ${context}
+Context from news article: ${context}
 
 Requirements:
 - Write approximately 800 words

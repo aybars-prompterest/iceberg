@@ -10,6 +10,16 @@ export const config = {
     minUpvotes: 500,
     userAgent: process.env.REDDIT_USER_AGENT ?? "IcebergBot/1.0",
   },
+  googleNews: {
+    queries: [
+      "artificial intelligence",
+      "software engineering",
+      "web development",
+      "machine learning",
+      "technology news",
+    ],
+    maxPerQuery: 10,
+  },
   huggingface: {
     apiKey: process.env.HUGGINGFACE_API_KEY ?? "",
     model: "Qwen/Qwen2.5-7B-Instruct",
@@ -20,6 +30,11 @@ export type RedditConfig = {
   subreddits: readonly string[];
   minUpvotes: number;
   userAgent: string;
+};
+
+export type GoogleNewsConfig = {
+  queries: readonly string[];
+  maxPerQuery?: number;
 };
 
 export type HuggingFaceConfig = {

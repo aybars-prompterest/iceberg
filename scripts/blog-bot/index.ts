@@ -1,4 +1,4 @@
-import { RedditSource } from "./sources/RedditSource";
+import { GoogleNewsSource } from "./sources/GoogleNewsSource";
 import { HuggingFaceWriter } from "./writers/HuggingFaceWriter";
 import { DrizzleBlogRepository } from "./repository/DrizzleBlogRepository";
 import { BlogBot } from "./orchestrator";
@@ -26,7 +26,7 @@ async function getIntervalMs(): Promise<number> {
 }
 
 const bot = new BlogBot(
-  new RedditSource(config.reddit),
+  new GoogleNewsSource(config.googleNews),
   new HuggingFaceWriter(config.huggingface),
   new DrizzleBlogRepository(),
 );
