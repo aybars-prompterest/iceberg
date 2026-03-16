@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { BlogBot } from "@scripts/blog-bot/orchestrator";
-import { RedditSource } from "@scripts/blog-bot/sources/RedditSource";
+import { GoogleNewsSource } from "@scripts/blog-bot/sources/GoogleNewsSource";
 import { HuggingFaceWriter } from "@scripts/blog-bot/writers/HuggingFaceWriter";
 import { DrizzleBlogRepository } from "@scripts/blog-bot/repository/DrizzleBlogRepository";
 import { db } from "@/db/client";
@@ -19,24 +19,16 @@ export async function POST() {
   const s: Record<string, string> = {};
   for (const row of rows) s[row.key] = row.value;
 
-  const subreddits = s.bot_subreddits
-    ? s.bot_subreddits
-        .split(",")
-        .map((r) => r.trim())
-        .filter(Boolean)
-    : ["technology", "programming", "artificial", "MachineLearning", "webdev"];
-  const minUpvotes = s.bot_min_upvotes ? Number(s.bot_min_upvotes) : 500;
+  const queries = s.bot_queries
+    ? s.bot_queries.split(",").map((q) => q.trim()).filter(Boolean)
+    : ["artificial intelligence", "software engineering", "web development", "machine learning", "technology news"];
   const model = s.bot_model || "Qwen/Qwen2.5-7B-Instruct";
   const temperature = s.bot_temperature ? Number(s.bot_temperature) : undefined;
   const maxTokens = s.bot_max_tokens ? Number(s.bot_max_tokens) : undefined;
   const systemPrompt = s.bot_system_prompt || undefined;
 
   try {
-    const source = new RedditSource({
-      subreddits,
-      minUpvotes,
-      userAgent: process.env.REDDIT_USER_AGENT ?? "IcebergBot/1.0",
-    });
+    const source = new GoogleNewsSource({ queries });
     const writer = new HuggingFaceWriter({
       apiKey,
       model,
@@ -69,7 +61,7 @@ export async function POST() {
 
     const reason =
       result.status === "no_new"
-        ? "Reddit'ten konu bulunamadı. Upvote eşiğini düşürmeyi veya subreddit'leri değiştirmeyi deneyin."
+        ? "Google News'ten konu bulunamadı. Lütfen daha sonra tekrar deneyin."
         : `Tüm konular zaten yayınlanmış (${result.skipped}/${result.topicsFound} atlandı).`;
 
     return NextResponse.json({ success: false, reason, ...result });
